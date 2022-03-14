@@ -20,7 +20,8 @@
                   <div class="hilight"> {{ this.$store.state.counter }} count &nbsp;</div>
                 <v-btn @click="increaseCount" color="black" outlined elevation="4">+</v-btn>
                 <div class="hilight">Price : {{ this.$store.state.counter}} * {{this.$store.state.price}} = {{this.$store.state.totalPrice}} BNB &nbsp; </div>
-                <v-btn @click="mint" color="black" outlined elevation="4">MINT !</v-btn>
+                <v-btn @click="connectWallet" v-if="isMetaMaskInstalled && !isMetaMaskConnected" color="black" outlined elevation="4">Connect</v-btn>
+                <v-btn @click="mint" v-if="isMetaMaskInstalled && isMetaMaskConnected"  color="black" outlined elevation="4">MINT !</v-btn>
               </v-row>
               </div>
           </div>
@@ -45,6 +46,16 @@ export default {
     };
   },
   computed: {
+      isMetaMaskInstalled() {
+          const { ethereum } = window;
+          return Boolean(ethereum && ethereum.isMetaMask)
+      },
+      isMetaMaskConnected() {
+          return this.$store.state.account!=null;
+      },
+      hasMessage() {
+          return this.$store.state.messageContent!=null
+      },
       nftPrice() {
         if(this.$store.state.account) {
           return BigNumber(this.$store.state.pumpkittens.price).shiftedBy(-18);
@@ -64,6 +75,12 @@ export default {
       // this.$store.commit('read_pumpkittens');
   },
   methods: {
+      connectWallet() {                
+          this.$store.dispatch("connect")              
+      },
+      lockMetamask() {
+          this.$store.dispatch("disconnect")
+      },
       changeType(selectType) {                
         console.log(selectType)
         if(selectType=="Type1"){
