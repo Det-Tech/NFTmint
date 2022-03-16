@@ -26,16 +26,21 @@
   z-index: 1;
 }
 
+.v-image-bg {
+  background: #1a8e97;
+  margin: 20px;
+  padding:0px;
+  border-style: dotted;
+  border-color: black;
+}
+
 .v-image-border {
   background: #1a8e97;
   background-image: url("/assets/Halos_2-4.png");
-  margin: 20px;
-  padding:0px;
   background-position: top;
-  border-style: dotted;
-  border-color: black;
   background-size: cover;
 }
+
 
 .v-leftImage {
   border-color: black;

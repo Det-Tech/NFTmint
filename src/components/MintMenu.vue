@@ -2,29 +2,37 @@
   <div class="">
     <div class="text-center text-h5 font-weight-bold"> </div>
       <v-row style="width: 100%; justify-content: center; margin: 0;">       
-        <v-col cols="5" lg="5" md="5" sm="5" class="pa-1 v-image-border">
+        <v-col  lg="5" md="5" sm="5" class="pa-1 v-image-bg">
+          <div class="v-image-border" style="bottom: -80px; position: relative;">
           <v-img :src="require('@/assets/Mask_1_Clean.png')"  v-show="this.$store.state.type==0"></v-img>
           <v-img :src="require('@/assets/Mask_1_Clean_2.png')"   v-show="this.$store.state.type==1"></v-img>
           <v-img :src="require('@/assets/Mask_1_Clean_3.png')"  v-show="this.$store.state.type==2"></v-img>
+          </div>
           <div style="background: white;bottom: -40px; position: relative"> 
-            <div class="text-center my-5 " style="margin-top: 100px !important; margin-right:50px;margin-left:50px; margin-bottom: 50px !important;">
-            
-              <v-row  align="center" justify="center">             
+            <div class="text-center my-5 " style="margin-top: 100px !important; margin-right:50px;margin-left:50px; margin-bottom: 50px !important;">            
+              <v-row  align="center" justify="center">   
+                <v-col  lg="3" md="3" sm="12" >          
                 <v-select
                  v-if="isMetaMaskInstalled && isMetaMaskConnected"  
                 :items="items"
                 label="Type3"
                 solo
                 @change="changeType"
-                style="width:30px;margin:5px;padding-top: 27px"
+                style="padding-top: 27px"
                 ></v-select> 
+                </v-col>
                 <v-btn @click="connectWallet" v-if="isMetaMaskInstalled && !isMetaMaskConnected" color="black" style="width: 100%;background: #1a8e97;height: 60px;margin: 20px;" outlined elevation="4">Connect</v-btn>
-
+                <v-col  lg="3" md="3" sm="12" >
                 <v-btn @click="decreaseCount"  v-if="isMetaMaskInstalled && isMetaMaskConnected"   color="black" outlined elevation="4">-</v-btn>
                   <div  v-if="isMetaMaskInstalled && isMetaMaskConnected"   class="hilight"> {{ this.$store.state.counter }} count &nbsp;</div>
                 <v-btn  v-if="isMetaMaskInstalled && isMetaMaskConnected"   @click="increaseCount" color="black" outlined elevation="4">+</v-btn>
-                <div  v-if="isMetaMaskInstalled && isMetaMaskConnected"   class="hilight">Price : {{ this.$store.state.counter}} * {{this.$store.state.price}} = {{this.$store.state.totalPrice}} BNB &nbsp; </div>
+                </v-col>
+                <v-col  lg="3" md="3" sm="12" >
+                <div  v-if="isMetaMaskInstalled && isMetaMaskConnected"   class="hilight">Price : {{ this.$store.state.counter}} * {{this.$store.state.price}} = {{this.$store.state.totalPrice}} ETH &nbsp; </div>
+                </v-col>
+                <v-col  lg="3" md="3" sm="12" >
                 <v-btn  v-if="isMetaMaskInstalled && isMetaMaskConnected"   @click="mint" color="black" outlined elevation="4">MINT !</v-btn>
+                </v-col>
               </v-row>
               </div>
           </div>

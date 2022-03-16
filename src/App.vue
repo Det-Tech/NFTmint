@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-app-bar fixed app elevation="2" class="header">
+        <v-app-bar fixed app elevation="2" class="header" style="height:70px">
             <v-container>
                 <v-row align="center">
                     <div class="d-flex align-center">
